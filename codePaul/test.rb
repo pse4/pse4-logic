@@ -8,9 +8,14 @@ end
 
 puts "==============================="
 
+puts bingCount("Sonstige näher bezeichnete Salmonelleninfektionen Orthopädische Chirurgie")
+
+
 k = "Cholera" 
 t1 = Time.now
 puts googleCount(k)
+
+
 puts "Took "+String(Time.now - t1)
 
 threads = []
@@ -19,7 +24,7 @@ p = ThreadPool.new(2) # if you put too many, google knows you're a bot
 
 fg = {}
 $db_fachgebieteUndSpezialisierungen.find().each {|b| fg[Integer(b["code"])] = b["de"]}
-
+puts ARGV[1]
 $db_relationFSZuICD.find({"icd_fs_google_de" => {"$exists" => false}}).each {|kv|
     #p.schedule(kv) {|kv|
        icd_text = ""
@@ -38,7 +43,7 @@ $db_relationFSZuICD.find({"icd_fs_google_de" => {"$exists" => false}}).each {|kv
        puts r
        throw "couldn't update db" if r != true && !r["updatedExisting"]
 
-    #sleep 0.5
+    sleep 1
 
 }
 

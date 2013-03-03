@@ -20,6 +20,7 @@ class ThreadPool
             job.call(*args)
           end
         end
+
       end
     end
   end
@@ -41,7 +42,6 @@ class ThreadPool
       schedule { throw :exit }
     end
     
-
     @pool.map(&:join)
   end
 end

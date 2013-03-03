@@ -1,4 +1,4 @@
-client = MongoClient.new(DBHOSTNAME)
+client = MongoClient.new(DBHOSTNAME, :pool_size => 50)
 db     = client['test']
 #puts client.database_names[1]+"|"
 
