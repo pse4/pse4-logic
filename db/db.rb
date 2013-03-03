@@ -1,6 +1,6 @@
 client = MongoClient.new(DBHOSTNAME)
 db     = client['test']
-puts client.database_names[1]+"|"
+#puts client.database_names[1]+"|"
 
 $db_scores = db['scores']
 
@@ -14,4 +14,8 @@ $db_icd["fr"] = db['fr']
 db = client['fachgebieteUndSpezialisierungen']
 $db_fachgebiete = db['fachgebiete']
 $db_spezialisierungen = db['spezialisierungen']
+$db_fachgebieteUndSpezialisierungen = db['fachgebieteUndSpezialisierungen']
+
+db = client['relationFSZuICD']
+$db_relationFSZuICD = db['relationFSZuICD']
 
