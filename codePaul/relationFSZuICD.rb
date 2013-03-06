@@ -6,20 +6,20 @@ exit
 #
 # speed up by chaching fs
 fs = []
-$db_fachgebieteUndSpezialisierungen.find().each {|b| fs << b}
+$db_fachgebieteUndSpezialisierungen.find().each { |b| fs << b }
 #fs.each {|b| puts b}
 
 # fill relation
 i = 0
-$db_icd["de"].find().each {|icd_entry| 
-    fs.each {|fs_entry|
-        rel = {"fs_code" => fs_entry["code"], "icd_code" => icd_entry["code"]}
-        $db_relationFSZuICD.insert(rel)
-        #puts String(a["code"]) + ";" + String(b["code"] )
+$db_icd["de"].find().each { |icd_entry|
+  fs.each { |fs_entry|
+    rel = {"fs_code" => fs_entry["code"], "icd_code" => icd_entry["code"]}
+    $db_relationFSZuICD.insert(rel)
+    #puts String(a["code"]) + ";" + String(b["code"] )
 
-    }
-    i += 1
-    putc "." # if i % 10 == 0
+  }
+  i += 1
+  putc "." # if i % 10 == 0
 }
 puts "relationFSZuICD created."
 

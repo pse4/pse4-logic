@@ -1,12 +1,11 @@
 class ThreadPool
 
 
-
   def initialize(size)
 
     @size = size
     @jobs = Queue.new
-    
+
 
     @pool = Array.new(@size) do |i|
       Thread.new do
@@ -24,24 +23,20 @@ class ThreadPool
       end
     end
   end
-  
 
-  
 
   def schedule(*args, &block)
 
     @jobs << [block, args]
   end
-  
 
-  
 
   def shutdown
 
     @size.times do
       schedule { throw :exit }
     end
-    
+
     @pool.map(&:join)
   end
 end
