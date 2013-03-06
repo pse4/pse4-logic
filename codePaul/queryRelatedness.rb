@@ -17,6 +17,7 @@ loop do
   cc = $db_icd["de"].find({"code" => c}).next()
 
   puts "#{cc["text"]} <=> "
+  puts "icd_fs_google_de icd_fs_bing_de icd_fs_yahoo_de fs_name"
   $db_relationFSZuICD.find({"icd_code" => c}).sort({
                                                        "icd_fs_google_de" => -1, "icd_fs_bing_de" => -1, "icd_fs_yahoo_de" => -1}).each { |t|
 

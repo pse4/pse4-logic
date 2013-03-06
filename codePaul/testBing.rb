@@ -28,27 +28,30 @@ $i = 0
 fg = {}
 $db_fachgebieteUndSpezialisierungen.find().each { |b| fg[Integer(b["code"])] = b["de"] }
 puts ARGV[1]
-it = $db_relationFSZuICD.find({"icd_fs_bing_de" => {"$exists" => false}})
-it.skip(500000)
+it = $db_relationFSZuICD.find({"icd_code" => "Q54"})#{"icd_fs_bing_de" => {"$exists" => false}})
+#it.skip(500000)
 puts "skipped"
 
-icd = readHashFromFile('icd_code_de_text.txt')
-
+#icd = readHashFromFile('icd_code_de_text.txt')
+require 'json'
 it.each { |kv|
 
   p.schedule(kv) { |kv|
 
     begin
       icd_text = ""
-      $db_icd["de"].find({"code" => kv["icd_code"]}).each { |a| icd_text = a["text"] }
+      aa = $db_icd["de"].find_one({"code" => kv["icd_code"]}).inspect
+      icd_text = aa["text"]
 
+
+      puts aa.to_json.to_s
       #icd_text = icd[String(kv["icd_code"])]
 
       fg_code = Integer(kv["fs_code"])
       fg_text = fg[fg_code]
-      gc = bingCount(icd_text+" "+fg_text)
+      gc = bingCount("+"+icd_text+" "+fg_text) # prepend + to force inclusion of first word
       icd_code=kv["icd_code"]
-      #puts "#{icd_code};#{fg_code};#{icd_text};#{fg_text}=>#{gc}"
+      puts "#{icd_code};#{fg_code};#{icd_text};#{fg_text}=>#{gc}"
 
       doc = {"fs_code" => fg_code, "icd_code" => icd_code}
       #puts "put"

@@ -1,8 +1,8 @@
 *.gem
 *.rbc
 *.*~
-*.*.swp
-*.*.bak
+*.swp
+*.bak
 .bundle
 .config
 coverage
