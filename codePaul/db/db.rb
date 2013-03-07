@@ -16,6 +16,9 @@ $db_fachgebiete = db['fachgebiete']
 $db_spezialisierungen = db['spezialisierungen']
 $db_fachgebieteUndSpezialisierungen = db['fachgebieteUndSpezialisierungen']
 
+db = client['doctors']
+$db_doctors = db['doctors']
+
 db = client['relationFSZuICD']
 $db_relationFSZuICD = db['relationFSZuICD']
 
