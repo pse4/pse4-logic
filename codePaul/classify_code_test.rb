@@ -1,24 +1,16 @@
-require "test/unit"
+require 'test/unit'
+require_relative 'classify_code'
 
 class ClassifyCodeTest < Test::Unit::TestCase
 
-  # Called before every test method runs. Can be used
-  # to set up fixture information.
+
   def setup
-    # Do nothing
+    @input = 'a00.80.00'
   end
 
-  # Called after every test method runs. Can be used to tear
-  # down fixture information.
 
-  def teardown
-    # Do nothing
+  def test_icd
+    assert(get_code_type(@input) == :chop)
   end
 
-  # Fake test
-  def test_fail
-
-    # To change this template use File | Settings | File Templates.
-    fail("Not implemented")
-  end
 end
