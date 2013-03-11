@@ -4,6 +4,9 @@ db = client['test']
 
 $db_scores = db['scores']
 
+$db_thesauren = client['thesauren']
+
+
 db = client['icd_2012_ch']
 puts "db not found" if db == nil
 $db_icd = {}
