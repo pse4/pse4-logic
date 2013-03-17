@@ -22,3 +22,22 @@ def readHashFromFile(fn)
   }
   return fg
 end
+
+# read from file formatted like:
+# key
+# value1"value2"..."valuen\n
+def readHashArray(fn)
+    fg = {}
+    ll = nil
+    File.readlines(fn).each { |line| 
+        line = line[0...-1] # remove newline
+        if ll != nil
+            fg[ll] = line.split('"')
+            ll = nil
+        else
+            ll = line
+        end
+
+    }
+    return fg
+end
